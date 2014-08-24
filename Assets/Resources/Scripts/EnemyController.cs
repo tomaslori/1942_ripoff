@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour {
 	
 	protected Rigidbody2D body;
+	protected float topSpd = 5.0f;
 	//protected ObjectManagmentPool<Buildings> buildings;
 
 	void Start () {
@@ -17,7 +18,7 @@ public abstract class EnemyController : MonoBehaviour {
 		moveSelf (baseDir + avoidance);
 	}
 
-	protected abstract Vector3 patternMove ( Rigidbody2D body );
+	protected abstract Vector3 patternMove ();
 
 	protected Vector3 avoidCollisions( Vector3 pos, List<Vector3> hazardousObjects ) {
 		Vector3 avoidance = new Vector3 (0, 0, 0);

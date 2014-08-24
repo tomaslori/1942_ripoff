@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: 669ff57470fd16a4c91631c29610fbb3
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Enemies
+    21300002: Bomber
+    21300004: Fighter
+    21300006: Shielder
+    21300008: Scouter
+    21300010: Boss
+    21300012: Double_GutlingGun
+    21300014: GutlingGun
+    21300016: Heavy_Fighter
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Bomber
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 612
+        width: 144
+        height: 184
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fighter
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 610
+        width: 140
+        height: 175
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shielder
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 648
+        width: 69
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Scouter
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 729
+        width: 103
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boss
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 662
+        width: 165
+        height: 122
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Double_GutlingGun
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 740
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GutlingGun
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 722
+        width: 40
+        height: 70
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Heavy_Fighter
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 593
+        width: 103
+        height: 118
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
