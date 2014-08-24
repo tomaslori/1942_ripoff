@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 44abb62728a48ab44aa6627937307ef7
+guid: 195f33b185670cb48bcf6f4f4f2bde3f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: base
+    21300000: Pheonix_-_Rebirth_Flame
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -23,16 +23,16 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
