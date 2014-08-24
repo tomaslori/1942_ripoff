@@ -13,9 +13,11 @@ public class ObjectManagementPool : MonoBehaviour
 
 	protected GameObject containerObject;
 
-	public ObjectManagementPool( GameObject prefab)
+	public ObjectManagementPool( GameObject prefab, int bufferSize = 10 )
 	{
-		this.prefab = prefab
+		this.prefab = prefab;
+
+		this.bufferSize = bufferSize;
 	}
 
 	void Start ()
@@ -54,6 +56,11 @@ public class ObjectManagementPool : MonoBehaviour
 		obj.transform.parent = containerObject.transform;
 		pooledObjects.Add(obj);
 		return;
+	}
+
+	public List<GameObject> getAllObjects ()
+	{
+		return this.pooledObjects;
 	}
 	
 }
