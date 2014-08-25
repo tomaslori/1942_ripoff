@@ -13,9 +13,9 @@ public abstract class EnemyController : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector3 baseDir = patternMove (body);
+		Vector3 baseDir = new Vector3 ();//patternMove (body);
 		Vector3 avoidance; // = avoidCollisions (body.position, buildings.getList ());
-		moveSelf (baseDir + avoidance);
+		moveSelf (baseDir /*+ avoidance*/);
 	}
 
 	protected abstract Vector3 patternMove ();
@@ -31,6 +31,6 @@ public abstract class EnemyController : MonoBehaviour {
 
 	protected void moveSelf ( Vector3 dir ) {
 		body.velocity = dir;
-		body.rotation = dir;
+		body.rotation = 0.0f;
 	}
 }
