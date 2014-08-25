@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	
-	public Boundary bounds;
+
 	public AircraftData data;
 	//private ProjectileManager projManager;
 	private Rigidbody2D body;
@@ -18,11 +17,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 mov = new Vector3 (xMov, yMov, 0.0f);
 		body.velocity = mov * data.spd;
 		
-		body.position = new Vector3 (
-			Mathf.Clamp (body.position.x, bounds.xMin, bounds.xMax), 
-			Mathf.Clamp (body.position.y, bounds.yMin, bounds.yMax),
-			0.0f
-			);
+		body.position = new Vector3 ( body.position.x, body.position.y, 0.0f );
 	}
 
 	void FixedUpdate () {

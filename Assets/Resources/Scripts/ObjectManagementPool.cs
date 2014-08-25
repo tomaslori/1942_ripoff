@@ -24,11 +24,11 @@ public class ObjectManagementPool : MonoBehaviour
 	{
 		containerObject = new GameObject(prefab.name + "Pool");
 
-		pooledObjects = new List<T>();
+		pooledObjects = new List<GameObject>();
 		
 		for ( int n=0; n < bufferSize; n++)
 		{
-			GameObject newObj = Instantiate(prefab);
+			GameObject newObj = Instantiate(prefab) as GameObject;
 			newObj.name = prefab.name;
 			PoolObject(newObj);
 		}
@@ -41,7 +41,7 @@ public class ObjectManagementPool : MonoBehaviour
 			GameObject pooledObject = pooledObjects[0];
 			pooledObjects.RemoveAt(0);
 			pooledObject.transform.parent = null;
-			pooledObject.SetActiveRecursively(true);
+			pooledObject.SetActive(true);
 			
 			return pooledObject;
 		} else if(!onlyPooled) {
@@ -52,7 +52,7 @@ public class ObjectManagementPool : MonoBehaviour
 	
 	public void PoolObject ( GameObject obj )
 	{
-		obj.SetActiveRecursively(false);
+		obj.SetActive(false);
 		obj.transform.parent = containerObject.transform;
 		pooledObjects.Add(obj);
 		return;

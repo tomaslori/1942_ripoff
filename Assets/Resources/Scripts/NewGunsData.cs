@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewGunsData : MonoBehaviour
+public class NewGunsData
 {
 	private ObjectManagementPool projectilePool;
 
