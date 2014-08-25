@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ObjectManagementPool : MonoBehaviour
+public class ObjectManagementPool
 {
 	
 	private GameObject prefab;
@@ -18,17 +18,15 @@ public class ObjectManagementPool : MonoBehaviour
 		this.prefab = prefab;
 
 		this.bufferSize = bufferSize;
-	}
 
-	void Start ()
-	{
 		containerObject = new GameObject(prefab.name + "Pool");
-
+		
 		pooledObjects = new List<GameObject>();
 		
 		for ( int n=0; n < bufferSize; n++)
 		{
-			GameObject newObj = Instantiate(prefab) as GameObject;
+			GameObject newObj = MonoBehaviour.Instantiate(prefab, new Vector3(0, -3, 0), Quaternion.identity) as GameObject;
+			Debug.Log("SuperDuper");
 			newObj.name = prefab.name;
 			PoolObject(newObj);
 		}
@@ -45,7 +43,7 @@ public class ObjectManagementPool : MonoBehaviour
 			
 			return pooledObject;
 		} else if(!onlyPooled) {
-			return Instantiate(prefab) as GameObject;
+			return MonoBehaviour.Instantiate(prefab) as GameObject;
 		}
 		return null;
 	}

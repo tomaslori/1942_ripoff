@@ -20,7 +20,7 @@ public class NewLevelManager : MonoBehaviour
 	void Start ()
 	{
 		//this.enemyPool = new ObjectManagementPool(/* Enemy Prefab */, 15);
-		//this.buildingPool = new ObjectManagementPool(/* Building Prefab */, 15);
+		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
@@ -40,14 +40,14 @@ public class NewLevelManager : MonoBehaviour
 	}
 	
 	private void spawnStructure (float spawnTime){
-		return ;
+		buildingPool.GetObject (true);
 	}
 	
 	void Update () {
 		delta += Time.deltaTime;
 		if (delta > 0.4f) {
 			spawnStructure(Random.Range (0.5f, 2.0f));
-			Debug.Log("backpos = ( " + renderer.material.mainTextureOffset.x + ", " + backgroundPosition + " );");
+			//Debug.Log("backpos = ( " + renderer.material.mainTextureOffset.x + ", " + backgroundPosition + " );");
 			delta = 0.0f;
 		} 
 	}
