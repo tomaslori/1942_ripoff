@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour {
 		Instantiate(player, new Vector3(0, -3, 0), Quaternion.identity);
 		PlayerController script = player.GetComponent<PlayerController> ();
 		script.data = aircrafts[aircraftName];
-		script.bounds = bounds;
 	}
 
 	private void moveBackground() {
