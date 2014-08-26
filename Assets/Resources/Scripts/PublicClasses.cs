@@ -22,12 +22,13 @@ public class GunsData {
 [System.Serializable]
 public class AircraftData {
 	public int health, def;
-	public float spd;
+	public float spd, topSpd;
 	public GunsData gData;
 	
-	public AircraftData (float spd, int def, GunsData gData) {
+	public AircraftData (float spd, float topSpd, int def, GunsData gData) {
 		health = 100;
 		this.spd = spd;
+		this.topSpd = topSpd;
 		this.def = def;
 		this.gData = gData;
 	}

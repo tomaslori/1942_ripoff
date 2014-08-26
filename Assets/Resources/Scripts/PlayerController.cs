@@ -13,15 +13,15 @@ public class PlayerController : MonoBehaviour {
 		//projManager = new ProjectileManager ();
 	}
 
-	private void moveAircraft (float xMov, float yMov) {
-		Vector3 mov = new Vector3 (xMov, yMov, 0.0f);
-		body.velocity = mov * data.spd;
-		
-		body.position = new Vector3 ( body.position.x, body.position.y, 0.0f );
+	private void moveAircraft (Vector2 dir) {
+		body.AddForce (dir * data.spd);
+
+		if (body.velocity.magnitude > data.topSpd)
+			body.velocity = body.velocity.normalized * data.topSpd;
 	}
 
 	void FixedUpdate () {
-		moveAircraft (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+		moveAircraft ( new Vector2( Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")) );
 
 		// debugging
 		delta += Time.deltaTime;
