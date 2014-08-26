@@ -32,7 +32,7 @@ public class ObjectManagementPool
 		}
 	}
 	
-	public GameObject GetObject ( bool onlyPooled )
+	public GameObject GetObject ( bool onlyPooled, Vector3 position = new Vector3(0f,-3f,0f), Quaternion rotation = Quaternion.identity )
 	{
 		if(pooledObjects.Count > 0)
 		{
@@ -40,7 +40,10 @@ public class ObjectManagementPool
 			pooledObjects.RemoveAt(0);
 			pooledObject.transform.parent = null;
 			pooledObject.SetActive(true);
-			
+			Rigidbody2D objectBody = pooledObject.GetComponent<Rigidbody2D> ();
+			objectBody.position = position;
+			objectBody.rotation = rotation;
+
 			return pooledObject;
 		} else if(!onlyPooled) {
 			return MonoBehaviour.Instantiate(prefab) as GameObject;

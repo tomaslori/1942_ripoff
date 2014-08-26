@@ -37,6 +37,11 @@ public class NewLevelManager : MonoBehaviour
 			backgroundPosition += 1.0f;
 		
 		renderer.material.mainTextureOffset = new Vector2 (0.0f, backgroundPosition);
+
+		foreach (GameObject building in buildingPool.getAllObjects()) {
+			Rigidbody2D buildingBody = building.GetComponent<Rigidbody2D> ();
+			buildingBody.position.Set(buildingBody.position.x, buildingBody.position.y + backgroundSpeed)
+		}
 	}
 	
 	private void spawnStructure (float spawnTime){
