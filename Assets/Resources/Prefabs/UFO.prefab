@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 95: {fileID: 9500000}
   - 58: {fileID: 5800000}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 875e8c4a48c13d546aa09fe75533e542, type: 2}
+  m_Controller: {fileID: 9100000, guid: b7551b38ab6413f4b96a83b5f20adad6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300014, guid: d0a5a2ec3a8519c4aa79c736af117950, type: 3}
+  m_Sprite: {fileID: 21300014, guid: e3e8be6a24df3489e87eaf6e1c8f7d95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
