@@ -19,7 +19,7 @@ public class NewLevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//this.enemyPool = new ObjectManagementPool(/* Enemy Prefab */, 15);
+		this.enemyPool = new ObjectManagementPool(Resources.Load ("Prefabs/Scouter") as GameObject, 15);
 		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
 		this.aircraftManager = new AircraftManager();
 
@@ -32,6 +32,7 @@ public class NewLevelManager : MonoBehaviour
 		spawnStructure (13);
 		spawnStructure (19);
 		spawnStructure (25);
+		enemyPool.GetObject (true, new Vector2(0, 0));
 
 	}
 
