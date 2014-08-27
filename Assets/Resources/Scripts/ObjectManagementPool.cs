@@ -9,6 +9,8 @@ public class ObjectManagementPool
 	
 	public List<GameObject> pooledObjects;
 
+	public List<GameObject> activeObjects;
+
 	public int bufferSize;
 
 	protected GameObject containerObject;
@@ -22,7 +24,9 @@ public class ObjectManagementPool
 		containerObject = new GameObject(prefab.name + "Pool");
 		
 		pooledObjects = new List<GameObject>();
-		
+
+		activeObjects = new List<GameObject>();
+
 		for ( int n=0; n < bufferSize; n++)
 		{
 			GameObject newObj = MonoBehaviour.Instantiate(prefab, new Vector3(0, -3, 0), Quaternion.identity) as GameObject;
@@ -32,15 +36,19 @@ public class ObjectManagementPool
 		}
 	}
 	
-	public GameObject GetObject ( bool onlyPooled )
+	public GameObject GetObject ( bool onlyPooled, Vector2 position, float rotation = 0f )
 	{
 		if(pooledObjects.Count > 0)
 		{
 			GameObject pooledObject = pooledObjects[0];
 			pooledObjects.RemoveAt(0);
+			activeObjects.Add(pooledObject);
 			pooledObject.transform.parent = null;
 			pooledObject.SetActive(true);
-			
+			Rigidbody2D objectBody = pooledObject.GetComponent<Rigidbody2D> ();
+			objectBody.position = position;
+			objectBody.rotation = rotation;
+
 			return pooledObject;
 		} else if(!onlyPooled) {
 			return MonoBehaviour.Instantiate(prefab) as GameObject;
@@ -53,12 +61,13 @@ public class ObjectManagementPool
 		obj.SetActive(false);
 		obj.transform.parent = containerObject.transform;
 		pooledObjects.Add(obj);
+		activeObjects.Remove (obj);
 		return;
 	}
 
 	public List<GameObject> getAllObjects ()
 	{
-		return this.pooledObjects;
+		return activeObjects;
 	}
 	
 }
