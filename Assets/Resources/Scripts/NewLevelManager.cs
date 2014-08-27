@@ -24,9 +24,15 @@ public class NewLevelManager : MonoBehaviour
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
-		Instantiate(player, new Vector3(0, -3, 0), Quaternion.identity);
+		Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
 		this.playerController = player.GetComponent<PlayerController> ();
 		playerController.data = aircraftManager.getAircraft(aircraftName);
+
+		spawnStructure (7);
+		spawnStructure (13);
+		spawnStructure (19);
+		spawnStructure (25);
+
 	}
 
 	private void moveBackground() {
@@ -44,9 +50,9 @@ public class NewLevelManager : MonoBehaviour
 		}
 	}
 	
-	private void spawnStructure (float spawnTime){
+	public void spawnStructure (float height){
 		float x = Random.Range(-7f, 7f);
-		buildingPool.GetObject (true, new Vector2(x, 7));
+		buildingPool.GetObject (true, new Vector2(x, height));
 	}
 	
 	void Update () {
@@ -59,7 +65,6 @@ public class NewLevelManager : MonoBehaviour
 	
 	void FixedUpdate () {
 		moveBackground ();
-		spawnStructure(Random.Range (0.5f, 2.0f));
 	}
 }
 
