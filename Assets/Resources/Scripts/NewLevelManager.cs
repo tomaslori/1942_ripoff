@@ -40,18 +40,18 @@ public class NewLevelManager : MonoBehaviour
 
 		foreach (GameObject building in buildingPool.getAllObjects()) {
 			Rigidbody2D buildingBody = building.GetComponent<Rigidbody2D> ();
-			buildingBody.position.Set(buildingBody.position.x, buildingBody.position.y + backgroundSpeed)
+			buildingBody.MovePosition(new Vector2(buildingBody.position.x, buildingBody.position.y + backgroundSpeed));
 		}
 	}
 	
 	private void spawnStructure (float spawnTime){
-		buildingPool.GetObject (true);
+		float x = Random.Range(-7f, 7f);
+		buildingPool.GetObject (true, new Vector2(x, 7));
 	}
 	
 	void Update () {
 		delta += Time.deltaTime;
 		if (delta > 0.4f) {
-			spawnStructure(Random.Range (0.5f, 2.0f));
 			//Debug.Log("backpos = ( " + renderer.material.mainTextureOffset.x + ", " + backgroundPosition + " );");
 			delta = 0.0f;
 		} 
@@ -59,6 +59,7 @@ public class NewLevelManager : MonoBehaviour
 	
 	void FixedUpdate () {
 		moveBackground ();
+		spawnStructure(Random.Range (0.5f, 2.0f));
 	}
 }
 
