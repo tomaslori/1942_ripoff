@@ -30,7 +30,6 @@ public class ObjectManagementPool
 		for ( int n=0; n < bufferSize; n++)
 		{
 			GameObject newObj = MonoBehaviour.Instantiate(prefab, new Vector3(0, -3, 0), Quaternion.identity) as GameObject;
-			Debug.Log("SuperDuper");
 			newObj.name = prefab.name;
 			PoolObject(newObj);
 		}
@@ -48,6 +47,7 @@ public class ObjectManagementPool
 			Rigidbody2D objectBody = pooledObject.GetComponent<Rigidbody2D> ();
 			objectBody.position = position;
 			objectBody.rotation = rotation;
+
 
 			return pooledObject;
 		} else if(!onlyPooled) {

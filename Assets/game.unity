@@ -126,11 +126,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 846272902}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: -.0414886475, y: .565918684, z: 0}
   m_LocalScale: {x: 1.70000005, y: 1, z: 1.5}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1662350760}
+  m_RootOrder: 0
 --- !u!114 &846272907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +143,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aircraftName: FA-28A
+--- !u!1 &1662350757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1662350760}
+  - 114: {fileID: 1662350759}
+  - 61: {fileID: 1662350758}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1662350758
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662350757}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 16.9993057, y: 14.98421}
+  m_Center: {x: -.0380630493, y: .55548811}
+--- !u!114 &1662350759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662350757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9c387a8684848868cb130b59a47044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1662350760
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662350757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0414886475, y: -.565918684, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 846272906}
+  m_Father: {fileID: 1793886619}
+  m_RootOrder: 0
 --- !u!1 &1793886614
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +276,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1662350760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &2105402577
@@ -289,4 +342,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
