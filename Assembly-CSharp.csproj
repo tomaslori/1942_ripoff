@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Resources\Scripts\AircraftManager.cs" />
      <Compile Include="Assets\Resources\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Resources\Scripts\Floor.cs" />
      <Compile Include="Assets\Resources\Scripts\GatlingGunController.cs" />
      <Compile Include="Assets\Resources\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Resources\Scripts\NewGunsData.cs" />
