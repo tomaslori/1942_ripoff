@@ -5,26 +5,26 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour {
 	
 	protected Rigidbody2D body;
-	protected float topSpd = 5.0f;
-	//protected ObjectManagmentPool<Buildings> buildings;
+	protected float topSpd = 3.0f;
+	public ObjectManagementPool buildings;
 
 	void Start () {
 
 	}
 
 	void Update () {
-		Vector3 baseDir = new Vector3 ();//patternMove (body);
-		Vector3 avoidance; // = avoidCollisions (body.position, buildings.getList ());
+		Vector3 baseDir = patternMove ();
+		Vector3 avoidance = avoidCollisions (body.position, buildings.getAllObjects());
 		moveSelf (baseDir /*+ avoidance*/);
 	}
 
 	protected abstract Vector3 patternMove ();
 
-	protected Vector3 avoidCollisions( Vector3 pos, List<Vector3> hazardousObjects ) {
+	protected Vector3 avoidCollisions( Vector3 pos, List<GameObject> hazardousObjects ) {
 		Vector3 avoidance = new Vector3 (0, 0, 0);
 
-		foreach( Vector3 vec in hazardousObjects )
-			avoidance = avoidance + (pos-vec);
+		foreach( GameObject obj in hazardousObjects )
+			avoidance = avoidance + ( pos - obj.GetComponent<Rigidbody2D>().position );
 
 		return avoidance;
 	}
