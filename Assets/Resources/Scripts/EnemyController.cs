@@ -6,7 +6,7 @@ public abstract class EnemyController : MonoBehaviour {
 	
 	protected Rigidbody2D body;
 	protected float topSpd = 1.0f;
-	public ObjectManagementPool buildings;
+	public static ObjectManagementPool buildings;
 
 	void Start () {
 
@@ -14,7 +14,8 @@ public abstract class EnemyController : MonoBehaviour {
 
 	void Update () {
 		Vector3 baseDir = patternMove ();
-		Vector3 avoidance = avoidCollisions (new Vector2(body.position.x, body.position.y), buildings.getAllObjects());
+		List<GameObject> buildingList = buildings.getAllObjects ();
+		Vector3 avoidance = avoidCollisions (new Vector2(body.position.x, body.position.y), buildingList);
 		moveSelf (baseDir + avoidance);
 	}
 

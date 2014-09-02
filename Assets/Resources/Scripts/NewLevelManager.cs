@@ -15,12 +15,18 @@ public class NewLevelManager : MonoBehaviour
 	private float backgroundSpeed = -0.02f, backgroundPosition = 0.0f;
 
 	private float delta = 0.0f; // Used for easier debugging
+
+	void Awake()
+	{
+		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
+		EnemyController.buildings = this.buildingPool;
+	}
 	
 	// Use this for initialization
 	void Start ()
 	{
+
 		this.enemyPool = new ObjectManagementPool(Resources.Load ("Prefabs/Scouter") as GameObject, 15);
-		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
@@ -37,7 +43,7 @@ public class NewLevelManager : MonoBehaviour
 	}
 
 	private void moveBackground() {
-		backgroundPosition += backgroundSpeed/5;
+		backgroundPosition += backgroundSpeed;
 		
 		// avoids float growing and becoming inaccurate
 		if (backgroundPosition < -1.0f)
