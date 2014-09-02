@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D body;
 	public Boundary bounds;
 
+	private ObjectManagementPool bulletPool;
+
 	void Start () {
+		bulletPool = new ObjectManagementPool(Resources.Load ("Prefabs/Projectile") as GameObject, 50);
 		body = gameObject.GetComponent<Rigidbody2D> ();
 		bounds.xMax = 7.7f;
 		bounds.xMin = -7.7f;
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 pos = new Vector3 (body.position.x + data.gData.offset, body.position.y, 2.0f);
 		Quaternion rot = new Quaternion (0.0f, 0.0f, 90.0f, 90.0f);
 
-		GameObject proj = Instantiate(Resources.Load ("Prefabs/Projectile"), pos, rot) as GameObject;
+		GameObject proj = bulletPool.getObject (true, new Vector2(body.position.x, body.position.y), 90f);
 		proj.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0.0f, data.gData.projSpd, 0.0f);
 	}
 
@@ -42,6 +45,10 @@ public class PlayerController : MonoBehaviour {
 			shoot();
 
 		body.position = new Vector3 (Mathf.Clamp (body.position.x, bounds.xMin, bounds.xMax), Mathf.Clamp (body.position.y, bounds.yMin, bounds.yMax), 0.0f);
+	}
+
+	public void poolBullet (GameObject bullet) {
+		this.bulletPool.poolObject (bullet);
 	}
 	
 }

@@ -31,9 +31,9 @@ public class NewLevelManager : MonoBehaviour
 	private List<GameObject> loadBuildings () {
 		List<GameObject> buildings = new List<GameObject> ();
 		buildings.Add (Resources.Load ("Prefabs/Square-Building-1") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
 		return buildings;
 	}
 
