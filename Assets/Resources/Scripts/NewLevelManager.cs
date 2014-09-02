@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NewLevelManager : MonoBehaviour
 {
@@ -24,18 +25,29 @@ public class NewLevelManager : MonoBehaviour
 		bounds.yMin = -4.1f;
 	}
 
+	private List<GameObject> loadBuildings () {
+		List<GameObject> buildings = new List<GameObject> ();
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-1") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
+		return buildings;
+	}
+
 	void Awake()
 	{
 		initBoundaries ();
 
-		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
+		this.buildingPool = new ObjectManagementPool(loadBuildings());
 		EnemyController.buildings = this.buildingPool;
 	}
 	
 	// Use this for initialization
 	void Start ()
 	{
-		this.enemyPool = new ObjectManagementPool(Resources.Load ("Prefabs/Scouter") as GameObject, 15);
+		List<GameObject> enemies = new List<GameObject> ();
+		enemies.Add (Resources.Load ("Prefabs/Scouter") as GameObject);
+		this.enemyPool = new ObjectManagementPool(enemies, 5);
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
@@ -81,6 +93,10 @@ public class NewLevelManager : MonoBehaviour
 
 	public void poolStructure (GameObject structure) {
 		buildingPool.poolObject (structure);
+	}
+
+	public void destroyEnemy (GameObject enemy) {
+		enemyPool.poolObject (enemy);
 	}
 }
 
