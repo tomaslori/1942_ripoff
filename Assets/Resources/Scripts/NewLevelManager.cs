@@ -11,13 +11,23 @@ public class NewLevelManager : MonoBehaviour
 
 	private PlayerController playerController;
 
+	private Boundary bounds;
+
 	public string aircraftName = "F-22B";
 	private float backgroundSpeed = -0.02f, backgroundPosition = 0.0f;
-
-	private float delta = 0.0f; // Used for easier debugging
+	
+	private void initBoundaries () {
+		bounds = new Boundary ();
+		bounds.xMax = 7.7f;
+		bounds.xMin = -7.7f;
+		bounds.yMax = 4.1f;
+		bounds.yMin = -4.1f;
+	}
 
 	void Awake()
 	{
+		initBoundaries ();
+
 		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
 		EnemyController.buildings = this.buildingPool;
 	}
@@ -25,7 +35,6 @@ public class NewLevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-
 		this.enemyPool = new ObjectManagementPool(Resources.Load ("Prefabs/Scouter") as GameObject, 15);
 		this.aircraftManager = new AircraftManager();
 
@@ -33,6 +42,7 @@ public class NewLevelManager : MonoBehaviour
 		Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
 		this.playerController = player.GetComponent<PlayerController> ();
 		playerController.data = aircraftManager.getAircraft(aircraftName);
+		playerController.bounds = this.bounds;
 
 		spawnStructure (7);
 		spawnStructure (13);
@@ -63,11 +73,6 @@ public class NewLevelManager : MonoBehaviour
 	}
 	
 	void Update () {
-		delta += Time.deltaTime;
-		if (delta > 0.4f) {
-			//Debug.Log("backpos = ( " + renderer.material.mainTextureOffset.x + ", " + backgroundPosition + " );");
-			delta = 0.0f;
-		} 
 	}
 	
 	void FixedUpdate () {

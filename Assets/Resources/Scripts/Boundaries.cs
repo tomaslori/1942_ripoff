@@ -15,7 +15,6 @@ public class Boundaries : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		Debug.Log (other.gameObject.name + " Stay");
 	}
 
 	// Use this for initialization
