@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class EnemyController : MonoBehaviour {
-
-	public static ObjectManagementPool buildings;
-
+	
 	protected Rigidbody2D body;
-	protected float topSpd = 3.0f;
+	protected float topSpd = 1.0f;
+	public ObjectManagementPool buildings;
 
 	void Start () {
 
@@ -15,18 +14,30 @@ public abstract class EnemyController : MonoBehaviour {
 
 	void Update () {
 		Vector3 baseDir = patternMove ();
-		List<GameObject> buildingList = buildings.getAllObjects ();
-		Vector3 avoidance = avoidCollisions (body.position, buildingList);
-		moveSelf (baseDir /*+ avoidance*/);
+		Vector3 avoidance = avoidCollisions (new Vector2(body.position.x, body.position.y), buildings.getAllObjects());
+		moveSelf (baseDir + avoidance);
 	}
 
 	protected abstract Vector3 patternMove ();
 
-	protected Vector3 avoidCollisions( Vector3 pos, List<GameObject> hazardousObjects ) {
-		Vector3 avoidance = new Vector3 (0, 0, 0);
+	protected Vector3 avoidCollisions( Vector2 pos, List<GameObject> hazardousObjects ) {
+		Vector2 avoidance = new Vector3 (0, 0, 0);
 
-		//foreach( GameObject obj in hazardousObjects )
-			//avoidance = avoidance + ( pos - obj.GetComponent<Rigidbody2D>().position );
+		if (hazardousObjects.Count == 0)
+			return avoidance;
+
+		float minDist = (pos - hazardousObjects[0].GetComponent<Rigidbody2D>().position).magnitude;
+
+		foreach( GameObject obj in hazardousObjects ) {
+			float dist = (pos - (Vector2)obj.GetComponent<Rigidbody2D>().position).magnitude;
+			if (dist < minDist) 
+				minDist = dist;
+		}
+
+		foreach( GameObject obj in hazardousObjects ) {
+			Vector2 vec = (pos - (Vector2)obj.GetComponent<Rigidbody2D>().position);
+			avoidance = avoidance + vec.normalized * (minDist/vec.magnitude) * topSpd;
+		}
 
 		return avoidance;
 	}
