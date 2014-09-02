@@ -6,10 +6,14 @@ public class PlayerController : MonoBehaviour {
 	public AircraftData data;
 	//private ProjectileManager projManager;
 	private Rigidbody2D body;
-	private float delta = 0.0f; // Used for easier debugging
+	public Boundary bounds;
 
 	void Start () {
 		body = gameObject.GetComponent<Rigidbody2D> ();
+		bounds.xMax = 7.7f;
+		bounds.xMin = -7.7f;
+		bounds.yMax = 4.1f;
+		bounds.yMin = -4.1f;
 		//projManager = new ProjectileManager ();
 	}
 
@@ -22,13 +26,6 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
 		moveAircraft ( new Vector2( Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")) );
-
-		// debugging
-		delta += Time.deltaTime;
-		if (delta > 1.0f) {
-			//Debug.Log ("pos( " + body.position.x + ", " + body.position.y + " );");
-			delta = 0.0f;
-		}
 	}
 
 	private void shoot () {
@@ -43,6 +40,8 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown ("space"))
 			shoot();
+
+		body.position = new Vector3 (Mathf.Clamp (body.position.x, bounds.xMin, bounds.xMax), Mathf.Clamp (body.position.y, bounds.yMin, bounds.yMax), 0.0f);
 	}
 	
 }

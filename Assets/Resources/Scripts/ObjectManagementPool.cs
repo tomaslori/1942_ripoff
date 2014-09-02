@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ObjectManagementPool
 {
 	
-	private GameObject prefab;
+	private List<GameObject> prefabs;
 	
 	public List<GameObject> pooledObjects;
 
@@ -15,27 +15,31 @@ public class ObjectManagementPool
 
 	protected GameObject containerObject;
 
-	public ObjectManagementPool( GameObject prefab, int bufferSize = 10 )
+	public ObjectManagementPool( List<GameObject> prefabs, int bufferSize = 10 )
 	{
-		this.prefab = prefab;
+		this.prefabs = prefabs;
 
 		this.bufferSize = bufferSize;
 
-		containerObject = new GameObject(prefab.name + "Pool");
-		
+		containerObject = new GameObject(prefabs[0].name + "Pool");
+		containerObject.transform.position = new Vector2 (-1000f, -1000f);
+
 		pooledObjects = new List<GameObject>();
 
 		activeObjects = new List<GameObject>();
-
-		for ( int n=0; n < bufferSize; n++)
-		{
-			GameObject newObj = MonoBehaviour.Instantiate(prefab, new Vector3(0, -3, 0), Quaternion.identity) as GameObject;
-			newObj.name = prefab.name;
-			PoolObject(newObj);
+		while (pooledObjects.Count < bufferSize) {
+			for (int i=0; i < prefabs.Count; i++) {
+				GameObject newObj = MonoBehaviour.Instantiate (prefabs [i], new Vector3 (0, -3, 0), Quaternion.identity) as GameObject;
+				newObj.name = prefabs[i].name;
+				poolObject (newObj);
+				if (pooledObjects.Count == bufferSize) {
+					break;
+				}
+			}
 		}
 	}
 	
-	public GameObject GetObject ( bool onlyPooled, Vector2 position, float rotation = 0f )
+	public GameObject getObject ( bool onlyPooled, Vector2 position, float rotation = 0f )
 	{
 		if(pooledObjects.Count > 0)
 		{
@@ -51,15 +55,15 @@ public class ObjectManagementPool
 
 			return pooledObject;
 		} else if(!onlyPooled) {
-			return MonoBehaviour.Instantiate(prefab) as GameObject;
+			return MonoBehaviour.Instantiate(prefabs[0]) as GameObject;
 		}
 		return null;
 	}
 	
-	public void PoolObject ( GameObject obj )
+	public void poolObject ( GameObject obj )
 	{
 		obj.SetActive(false);
-		obj.transform.parent = containerObject.transform;
+		obj.transform.position = containerObject.transform.position;
 		pooledObjects.Add(obj);
 		activeObjects.Remove (obj);
 		return;

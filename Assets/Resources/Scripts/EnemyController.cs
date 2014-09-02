@@ -20,6 +20,18 @@ public abstract class EnemyController : MonoBehaviour {
 		moveSelf (baseDir + avoidance);
 	}
 
+	void OnCollisionEnter2D(Collision2D other) {
+		NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
+		nlm.destroyEnemy(this.gameObject);
+	}
+	
+	void OnCollisionExit2D(Collision2D other) {
+	}
+	
+	void OnCollisionrStay2D(Collision2D other) {
+	}
+
+
 	protected abstract Vector3 patternMove ();
 
 	protected Vector3 avoidCollisions( Vector2 pos, List<GameObject> hazardousObjects ) {

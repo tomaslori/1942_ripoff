@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NewLevelManager : MonoBehaviour
 {
@@ -11,38 +12,66 @@ public class NewLevelManager : MonoBehaviour
 
 	private PlayerController playerController;
 
+	private Boundary bounds;
+
 	public string aircraftName = "F-22B";
 	private float backgroundSpeed = -0.02f, backgroundPosition = 0.0f;
+	
+	private void initBoundaries () {
+		bounds = new Boundary ();
+		bounds.xMax = 7.7f;
+		bounds.xMin = -7.7f;
+		bounds.yMax = 4.1f;
+		bounds.yMin = -4.1f;
+	}
 
-	private float delta = 0.0f; // Used for easier debugging
+	private List<GameObject> loadBuildings () {
+		List<GameObject> buildings = new List<GameObject> ();
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-1") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
+		return buildings;
+	}
 
 	void Awake()
 	{
-		this.buildingPool = new ObjectManagementPool(Resources.Load ("Prefabs/Square-Building-1") as GameObject, 15);
+		initBoundaries ();
+
+		this.buildingPool = new ObjectManagementPool(loadBuildings());
 		EnemyController.buildings = this.buildingPool;
 	}
 	
 	// Use this for initialization
 	void Start ()
 	{
-
-		this.enemyPool = new ObjectManagementPool(Resources.Load ("Prefabs/Scouter") as GameObject, 15);
+		List<GameObject> enemies = new List<GameObject> ();
+		enemies.Add (Resources.Load ("Prefabs/Scouter") as GameObject);
+		this.enemyPool = new ObjectManagementPool(enemies, 5);
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
 		Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
 		this.playerController = player.GetComponent<PlayerController> ();
 		playerController.data = aircraftManager.getAircraft(aircraftName);
+		playerController.bounds = this.bounds;
 
 		spawnStructure (7);
 		spawnStructure (13);
 		spawnStructure (19);
 		spawnStructure (25);
-		enemyPool.GetObject (true, new Vector2(0, 4));
+		enemyPool.getObject (true, new Vector2(0, 3));
 
 	}
 
-	private void moveBackground() {
+	void Update () {
+	}
+	
+	void FixedUpdate () {
+		moveBackground ();
+	}
+
+		private void moveBackground() {
 		backgroundPosition += backgroundSpeed;
 		
 		// avoids float growing and becoming inaccurate
@@ -59,19 +88,15 @@ public class NewLevelManager : MonoBehaviour
 	
 	public void spawnStructure (float height){
 		float x = Random.Range(-7f, 7f);
-		buildingPool.GetObject (true, new Vector2(x, height));
+		buildingPool.getObject (true, new Vector2(x, height));
 	}
-	
-	void Update () {
-		delta += Time.deltaTime;
-		if (delta > 0.4f) {
-			//Debug.Log("backpos = ( " + renderer.material.mainTextureOffset.x + ", " + backgroundPosition + " );");
-			delta = 0.0f;
-		} 
+
+	public void poolStructure (GameObject structure) {
+		buildingPool.poolObject (structure);
 	}
-	
-	void FixedUpdate () {
-		moveBackground ();
+
+	public void destroyEnemy (GameObject enemy) {
+		enemyPool.poolObject (enemy);
 	}
 }
 

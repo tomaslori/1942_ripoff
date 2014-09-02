@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NewGunsData
 {
@@ -12,7 +13,9 @@ public class NewGunsData
 
 	public NewGunsData( GameObject prefab, int numberOfShots, int cooldown)
 	{
-		this.projectilePool = new ObjectManagementPool (prefab, numberOfShots);
+		List<GameObject> prefabs = new List<GameObject> ();
+		prefabs.Add (prefab);
+		this.projectilePool = new ObjectManagementPool (prefabs, numberOfShots);
 		this.cooldown = cooldown;
 	}
 
