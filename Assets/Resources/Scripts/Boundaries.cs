@@ -10,7 +10,8 @@ public class Boundaries : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.name == "Square-Building-1") {
 			NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
-			nlm.spawnStructure(7);
+			nlm.spawnStructure(13);
+			nlm.poolStructure(other.gameObject);
 		}
 	}
 

@@ -22,7 +22,8 @@ public class ObjectManagementPool
 		this.bufferSize = bufferSize;
 
 		containerObject = new GameObject(prefab.name + "Pool");
-		
+		containerObject.transform.position = new Vector2 (-1000f, -1000f);
+
 		pooledObjects = new List<GameObject>();
 
 		activeObjects = new List<GameObject>();
@@ -31,11 +32,11 @@ public class ObjectManagementPool
 		{
 			GameObject newObj = MonoBehaviour.Instantiate(prefab, new Vector3(0, -3, 0), Quaternion.identity) as GameObject;
 			newObj.name = prefab.name;
-			PoolObject(newObj);
+			poolObject(newObj);
 		}
 	}
 	
-	public GameObject GetObject ( bool onlyPooled, Vector2 position, float rotation = 0f )
+	public GameObject getObject ( bool onlyPooled, Vector2 position, float rotation = 0f )
 	{
 		if(pooledObjects.Count > 0)
 		{
@@ -56,10 +57,10 @@ public class ObjectManagementPool
 		return null;
 	}
 	
-	public void PoolObject ( GameObject obj )
+	public void poolObject ( GameObject obj )
 	{
 		obj.SetActive(false);
-		obj.transform.parent = containerObject.transform;
+		obj.transform.position = containerObject.transform.position;
 		pooledObjects.Add(obj);
 		activeObjects.Remove (obj);
 		return;

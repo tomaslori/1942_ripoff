@@ -48,11 +48,18 @@ public class NewLevelManager : MonoBehaviour
 		spawnStructure (13);
 		spawnStructure (19);
 		spawnStructure (25);
-		enemyPool.GetObject (true, new Vector2(0, 3));
+		enemyPool.getObject (true, new Vector2(0, 3));
 
 	}
 
-	private void moveBackground() {
+	void Update () {
+	}
+	
+	void FixedUpdate () {
+		moveBackground ();
+	}
+
+		private void moveBackground() {
 		backgroundPosition += backgroundSpeed;
 		
 		// avoids float growing and becoming inaccurate
@@ -69,14 +76,11 @@ public class NewLevelManager : MonoBehaviour
 	
 	public void spawnStructure (float height){
 		float x = Random.Range(-7f, 7f);
-		buildingPool.GetObject (true, new Vector2(x, height));
+		buildingPool.getObject (true, new Vector2(x, height));
 	}
-	
-	void Update () {
-	}
-	
-	void FixedUpdate () {
-		moveBackground ();
+
+	public void poolStructure (GameObject structure) {
+		buildingPool.poolObject (structure);
 	}
 }
 
