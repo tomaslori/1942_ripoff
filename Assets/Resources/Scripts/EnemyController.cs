@@ -5,11 +5,12 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour {
 	
 	protected Rigidbody2D body;
-	protected float topSpd = 1.0f;
+	protected float topSpd = 3.0f;
+	protected float detectionRange = 5.0f;
 	public static ObjectManagementPool buildings;
 
 	void Start () {
-
+		body = GetComponent<Rigidbody2D> ();
 	}
 
 	void Update () {
@@ -27,17 +28,17 @@ public abstract class EnemyController : MonoBehaviour {
 		if (hazardousObjects.Count == 0)
 			return avoidance;
 
-		float minDist = (pos - hazardousObjects[0].GetComponent<Rigidbody2D>().position).magnitude;
+		List<Vector2> relevant = new List<Vector2> ();
 
 		foreach( GameObject obj in hazardousObjects ) {
-			float dist = (pos - (Vector2)obj.GetComponent<Rigidbody2D>().position).magnitude;
-			if (dist < minDist) 
-				minDist = dist;
+			Vector2 vec = pos - (Vector2)obj.GetComponent<Rigidbody2D>().position;
+			if (vec.magnitude < detectionRange) 
+				relevant.Add(vec);
 		}
 
-		foreach( GameObject obj in hazardousObjects ) {
-			Vector2 vec = (pos - (Vector2)obj.GetComponent<Rigidbody2D>().position);
-			avoidance = avoidance + vec.normalized * (minDist/vec.magnitude) * topSpd;
+
+		foreach( Vector2 vec in relevant ) {
+			avoidance = avoidance + vec.normalized * (1 -(vec.magnitude/detectionRange)) * topSpd;
 		}
 
 		return avoidance;

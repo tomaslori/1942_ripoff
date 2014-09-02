@@ -38,7 +38,7 @@ public class NewLevelManager : MonoBehaviour
 		spawnStructure (13);
 		spawnStructure (19);
 		spawnStructure (25);
-		enemyPool.GetObject (true, new Vector2(0, 3));
+		enemyPool.GetObject (true, new Vector2(0, 4));
 
 	}
 
