@@ -1,13 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Scripts/ObjectManagementPool.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Scripts/NewLevelManager.cs">
     <Files>
-      <File FileName="Assets/Resources/Scripts/ObjectManagementPool.cs" Line="46" Column="33" />
-      <File FileName="Assets/Resources/Scripts/AircraftManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/Scripts/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/Scripts/PlayerController.cs" Line="15" Column="2" />
-      <File FileName="Assets/Resources/Scripts/Boundaries.cs" Line="13" Column="26" />
-      <File FileName="Assets/Resources/Scripts/NewLevelManager.cs" Line="49" Column="4" />
+      <File FileName="Assets/Resources/Scripts/NewLevelManager.cs" Line="50" Column="52" />
+      <File FileName="Assets/Resources/Scripts/LevelManager.cs" Line="40" Column="1" />
+      <File FileName="Assets/Resources/Scripts/PlayerController.cs" Line="16" Column="23" />
+      <File FileName="Assets/Resources/Scripts/ObjectManagementPool.cs" Line="8" Column="33" />
+      <File FileName="Assets/Resources/Scripts/Boundaries.cs" Line="12" Column="1" />
+      <File FileName="Assets/Resources/Scripts/EnemyController.cs" Line="30" Column="37" />
+      <File FileName="Assets/Resources/Scripts/NewGunsData.cs" Line="16" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
