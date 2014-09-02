@@ -12,6 +12,9 @@ public class NewLevelManager : MonoBehaviour
 
 	private PlayerController playerController;
 
+	public GameObject cloudPrefab;
+	private GameObject cloud;
+
 	private Boundary bounds;
 
 	public string aircraftName = "F-22B";
@@ -28,9 +31,9 @@ public class NewLevelManager : MonoBehaviour
 	private List<GameObject> loadBuildings () {
 		List<GameObject> buildings = new List<GameObject> ();
 		buildings.Add (Resources.Load ("Prefabs/Square-Building-1") as GameObject);
-		buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
-		buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
-		buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
+		//buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
+		//buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
+		//buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
 		return buildings;
 	}
 
@@ -38,7 +41,7 @@ public class NewLevelManager : MonoBehaviour
 	{
 		initBoundaries ();
 
-		this.buildingPool = new ObjectManagementPool(loadBuildings());
+		this.buildingPool = new ObjectManagementPool(loadBuildings(), 10);
 		EnemyController.buildings = this.buildingPool;
 	}
 	
@@ -56,6 +59,8 @@ public class NewLevelManager : MonoBehaviour
 		playerController.data = aircraftManager.getAircraft(aircraftName);
 		playerController.bounds = this.bounds;
 
+		cloud = Instantiate(cloudPrefab, new Vector3(-3.0f, -10.0f, -8.0f), Quaternion.identity) as GameObject;
+
 		spawnStructure (7);
 		spawnStructure (13);
 		spawnStructure (19);
@@ -72,8 +77,12 @@ public class NewLevelManager : MonoBehaviour
 	}
 
 		private void moveBackground() {
-		backgroundPosition += backgroundSpeed;
-		
+		backgroundPosition += backgroundSpeed/5;
+		cloud.transform.position = new Vector2 (cloud.transform.position.x, cloud.transform.position.y - backgroundSpeed/3);
+
+		if (cloud.transform.position.y > 20.0f)
+			cloud.transform.position = new Vector2(Random.Range(-5f, 5f), Random.Range(-20f, -12f));
+
 		// avoids float growing and becoming inaccurate
 		if (backgroundPosition < -1.0f)
 			backgroundPosition += 1.0f;
