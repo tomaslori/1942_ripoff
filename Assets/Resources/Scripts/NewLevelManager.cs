@@ -65,7 +65,10 @@ public class NewLevelManager : MonoBehaviour
 		spawnStructure (13);
 		spawnStructure (19);
 		spawnStructure (25);
-		enemyPool.getObject (true, new Vector2(0, 3));
+		spawnEnemy (15);
+		spawnEnemy (21);
+		spawnEnemy (27);
+		//enemyPool.getObject (true, new Vector2(0, 3));
 
 	}
 
@@ -98,6 +101,11 @@ public class NewLevelManager : MonoBehaviour
 	public void spawnStructure (float height){
 		float x = Random.Range(-7f, 7f);
 		buildingPool.getObject (true, new Vector2(x, height));
+	}
+
+	public void spawnEnemy (float height){
+		float x = Random.Range(-7f, 7f);
+		enemyPool.getObject (true, new Vector2(x, height));
 	}
 
 	public void poolStructure (GameObject structure) {

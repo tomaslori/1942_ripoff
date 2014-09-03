@@ -15,6 +15,10 @@ public class Boundaries : MonoBehaviour {
 		} else if (other.gameObject.name.StartsWith ("Projectile")) {
 			PlayerController playerController = FindObjectOfType (typeof(PlayerController)) as PlayerController;
 			playerController.poolBullet(other.gameObject);
+		} else if (other.gameObject.name.StartsWith("Scouter")) {
+			NewLevelManager nlm = FindObjectOfType (typeof(NewLevelManager)) as NewLevelManager;
+			nlm.spawnEnemy (15);
+			nlm.destroyEnemy (other.gameObject);
 		}
 	}
 

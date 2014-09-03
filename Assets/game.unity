@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3772f71dd1b4d6c90257822da26801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloud: {fileID: 100000, guid: 2afb1ca15641d9b48859a7f4502b134e, type: 2}
+  cloudPrefab: {fileID: 100000, guid: 2afb1ca15641d9b48859a7f4502b134e, type: 2}
   aircraftName: FA-28A
 --- !u!1 &1662350757
 GameObject:
