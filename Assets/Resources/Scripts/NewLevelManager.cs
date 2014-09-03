@@ -47,7 +47,7 @@ public class NewLevelManager : MonoBehaviour
 
 		List<GameObject> enemies = new List<GameObject> ();
 		enemies.Add (Resources.Load ("Prefabs/Scouter") as GameObject);
-		this.enemyPool = new ObjectManagementPool(enemies, 5);
+		this.enemyPool = new ObjectManagementPool(enemies, 15);
 		this.aircraftManager = new AircraftManager();
 
 		GameObject player = MonoBehaviour.Instantiate (Resources.Load ("Prefabs/" + aircraftName) as GameObject) as GameObject;
@@ -62,8 +62,13 @@ public class NewLevelManager : MonoBehaviour
 		spawnStructure (19);
 		spawnStructure (25);
 		spawnEnemy (15);
+		spawnEnemy (17);
+		spawnEnemy (19);
 		spawnEnemy (21);
+		spawnEnemy (23);
+		spawnEnemy (25);
 		spawnEnemy (27);
+		spawnEnemy (29);
 		//enemyPool.getObject (true, new Vector2(0, 3));
 
 	}
@@ -123,6 +128,9 @@ public class NewLevelManager : MonoBehaviour
 
 	private IEnumerator LostGameGui () {
 		GameObject label = Instantiate (lostGameLabel) as GameObject;
+		GameObject plane = playerController.gameObject;
+		ObjectManagementPool bulletPool = playerController.bulletPool;
+		Destroy (playerController);
 		yield return new WaitForSeconds(2.0f);
 		Destroy(label);
 
@@ -131,9 +139,9 @@ public class NewLevelManager : MonoBehaviour
 		Destroy (this.buildingPool.containerObject);
 		this.enemyPool.recallObjects();
 		Destroy (this.enemyPool.containerObject);
-		this.playerController.bulletPool.recallObjects ();
-		Destroy (this.playerController.bulletPool.containerObject);
-		Destroy (this.playerController.gameObject);
+		bulletPool.recallObjects ();
+		Destroy (bulletPool.containerObject);
+		Destroy (plane);
 		Destroy (this.cloud);
 		this.startScreen.SetActive (true);
 	}
