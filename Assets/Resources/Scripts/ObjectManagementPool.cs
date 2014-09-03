@@ -42,6 +42,7 @@ public class ObjectManagementPool
 			for (int i=0; i < prefabs.Count; i++) {
 				GameObject newObj = MonoBehaviour.Instantiate (prefabs [i], new Vector3 (0, -3, 0), Quaternion.identity) as GameObject;
 				newObj.name = prefabs[i].name;
+				newObj.transform.parent = containerObject.transform;
 				poolObject (newObj);
 				if (pooledObjects.Count == bufferSize) {
 					break;
@@ -57,7 +58,6 @@ public class ObjectManagementPool
 			GameObject pooledObject = pooledObjects[0];
 			pooledObjects.RemoveAt(0);
 			activeObjects.Add(pooledObject);
-			pooledObject.transform.parent = null;
 			pooledObject.SetActive(true);
 			Rigidbody2D objectBody = pooledObject.GetComponent<Rigidbody2D> ();
 			objectBody.position = position;
@@ -83,6 +83,13 @@ public class ObjectManagementPool
 	public List<GameObject> getAllObjects ()
 	{
 		return activeObjects;
+	}
+
+	public void recallObjects() 
+	{
+		for (int i=0; i < activeObjects.Count; i++) {
+			poolObject(activeObjects[i]);
+		}
 	}
 	
 }

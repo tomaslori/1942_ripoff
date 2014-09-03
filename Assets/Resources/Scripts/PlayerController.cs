@@ -8,13 +8,18 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D body;
 	public Boundary bounds;
 
-	private ObjectManagementPool bulletPool;
+	public ObjectManagementPool bulletPool;
+
+	void OnCollisionEnter2D(Collision2D other) {
+		NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
+		nlm.restartGame ();
+	}
 
 	void Start () {
 		bulletPool = new ObjectManagementPool(Resources.Load ("Prefabs/Projectile") as GameObject, 50);
 		body = gameObject.GetComponent<Rigidbody2D> ();
-		bounds.xMax = 7.7f;
-		bounds.xMin = -7.7f;
+		bounds.xMax = 10.5f;
+		bounds.xMin = -10.5f;
 		bounds.yMax = 4.1f;
 		bounds.yMin = -4.1f;
 		//projManager = new ProjectileManager ();

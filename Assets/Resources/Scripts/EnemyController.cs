@@ -23,6 +23,7 @@ public abstract class EnemyController : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) {
 		NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
 		nlm.destroyEnemy(this.gameObject);
+		nlm.spawnEnemy (15f);
 	}
 	
 	void OnCollisionExit2D(Collision2D other) {

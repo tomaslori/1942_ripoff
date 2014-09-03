@@ -5,11 +5,9 @@ using System.Collections.Generic;
 public class NewLevelManager : MonoBehaviour
 {
 	private ObjectManagementPool enemyPool;
-
 	private ObjectManagementPool buildingPool;
 
 	private AircraftManager aircraftManager;
-
 	private PlayerController playerController;
 
 	public GameObject cloudPrefab;
@@ -19,11 +17,12 @@ public class NewLevelManager : MonoBehaviour
 
 	public string aircraftName = "F-22B";
 	private float backgroundSpeed = -0.02f, backgroundPosition = 0.0f;
+	public GameObject startScreen;
 	
 	private void initBoundaries () {
 		bounds = new Boundary ();
-		bounds.xMax = 7.7f;
-		bounds.xMin = -7.7f;
+		bounds.xMax = 10.5f;
+		bounds.xMin = -10.5f;
 		bounds.yMax = 4.1f;
 		bounds.yMin = -4.1f;
 	}
@@ -100,12 +99,12 @@ public class NewLevelManager : MonoBehaviour
 	}
 	
 	public void spawnStructure (float height){
-		float x = Random.Range(-7f, 7f);
+		float x = Random.Range(-12f, 12f);
 		buildingPool.getObject (true, new Vector2(x, height));
 	}
 
 	public void spawnEnemy (float height){
-		float x = Random.Range(-7f, 7f);
+		float x = Random.Range(-12f, 12f);
 		enemyPool.getObject (true, new Vector2(x, height));
 	}
 
@@ -115,6 +114,13 @@ public class NewLevelManager : MonoBehaviour
 
 	public void destroyEnemy (GameObject enemy) {
 		enemyPool.poolObject (enemy);
+	}
+
+	public void restartGame() {
+		Destroy(this.gameObject);
+		this.buildingPool.recallObjects();
+		this.enemyPool.recallObjects();
+		this.startScreen.SetActive (true);
 	}
 }
 

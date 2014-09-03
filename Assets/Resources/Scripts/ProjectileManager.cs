@@ -9,6 +9,7 @@ public class ProjectileManager : MonoBehaviour {
 		if (other.gameObject.name == "Scouter") {
 			NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
 			nlm.destroyEnemy(other.gameObject);
+			nlm.spawnEnemy(15f);
 		}
 	}
 	
