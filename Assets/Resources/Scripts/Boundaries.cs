@@ -8,10 +8,17 @@ public class Boundaries : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (other.gameObject.name == "Square-Building-1") {
-			NewLevelManager nlm = FindObjectOfType(typeof(NewLevelManager)) as NewLevelManager;
-			nlm.spawnStructure(13);
-			nlm.poolStructure(other.gameObject);
+		if (other.gameObject.name.StartsWith ("Square-Building")) {
+			NewLevelManager nlm = FindObjectOfType (typeof(NewLevelManager)) as NewLevelManager;
+			nlm.spawnStructure (13);
+			nlm.poolStructure (other.gameObject);
+		} else if (other.gameObject.name.StartsWith ("Projectile")) {
+			PlayerController playerController = FindObjectOfType (typeof(PlayerController)) as PlayerController;
+			playerController.poolBullet(other.gameObject);
+		} else if (other.gameObject.name.StartsWith("Scouter")) {
+			NewLevelManager nlm = FindObjectOfType (typeof(NewLevelManager)) as NewLevelManager;
+			nlm.spawnEnemy (15);
+			nlm.destroyEnemy (other.gameObject);
 		}
 	}
 

@@ -15,6 +15,17 @@ public class ObjectManagementPool
 
 	protected GameObject containerObject;
 
+	private static List<GameObject> buildSinglePrefabList( GameObject prefab )
+	{
+		List<GameObject> singlePrefabList = new List<GameObject> ();
+		singlePrefabList.Add (prefab);
+		return singlePrefabList;
+	}
+
+	public ObjectManagementPool(GameObject prefab, int bufferSize = 10) : this(buildSinglePrefabList(prefab), bufferSize)
+	{
+	}
+
 	public ObjectManagementPool( List<GameObject> prefabs, int bufferSize = 10 )
 	{
 		this.prefabs = prefabs;
