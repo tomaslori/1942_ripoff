@@ -38,10 +38,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void shoot () {
 		data.gData.offset = -data.gData.offset;
-		Vector3 pos = new Vector3 (body.position.x + data.gData.offset, body.position.y, 2.0f);
-		Quaternion rot = new Quaternion (0.0f, 0.0f, 90.0f, 90.0f);
+		Vector2 pos = new Vector2 (body.position.x + data.gData.offset, body.position.y);
 
-		GameObject proj = bulletPool.getObject (true, new Vector2(body.position.x, body.position.y), 90f);
+		GameObject proj = bulletPool.getObject (true, pos, 90f);
 		proj.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0.0f, data.gData.projSpd, 0.0f);
 	}
 
