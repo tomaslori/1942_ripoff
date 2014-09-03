@@ -13,7 +13,7 @@ public class ObjectManagementPool
 
 	public int bufferSize;
 
-	protected GameObject containerObject;
+	public GameObject containerObject;
 
 	private static List<GameObject> buildSinglePrefabList( GameObject prefab )
 	{
@@ -87,8 +87,12 @@ public class ObjectManagementPool
 
 	public void recallObjects() 
 	{
-		for (int i=0; i < activeObjects.Count; i++) {
-			poolObject(activeObjects[i]);
+		List<GameObject> copyList = new List<GameObject> ();
+		foreach (GameObject activeObject in activeObjects) {
+			copyList.Add (activeObject);
+		}
+		foreach (GameObject activeObject in copyList) {
+			poolObject(activeObject);
 		}
 	}
 	

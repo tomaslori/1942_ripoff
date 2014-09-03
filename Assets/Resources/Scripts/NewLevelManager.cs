@@ -48,8 +48,7 @@ public class NewLevelManager : MonoBehaviour
 		this.enemyPool = new ObjectManagementPool(enemies, 5);
 		this.aircraftManager = new AircraftManager();
 
-		GameObject player = Resources.Load ("Prefabs/" + aircraftName) as GameObject;
-		Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
+		GameObject player = MonoBehaviour.Instantiate (Resources.Load ("Prefabs/" + aircraftName) as GameObject) as GameObject;
 		this.playerController = player.GetComponent<PlayerController> ();
 		playerController.data = aircraftManager.getAircraft(aircraftName);
 		playerController.bounds = this.bounds;
@@ -119,7 +118,13 @@ public class NewLevelManager : MonoBehaviour
 	public void restartGame() {
 		Destroy(this.gameObject);
 		this.buildingPool.recallObjects();
+		Destroy (this.buildingPool.containerObject);
 		this.enemyPool.recallObjects();
+		Destroy (this.enemyPool.containerObject);
+		this.playerController.bulletPool.recallObjects ();
+		Destroy (this.playerController.bulletPool.containerObject);
+		Destroy (this.playerController.gameObject);
+		Destroy (this.cloud);
 		this.startScreen.SetActive (true);
 	}
 }
