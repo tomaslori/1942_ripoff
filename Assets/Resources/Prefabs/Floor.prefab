@@ -70,6 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudPrefab: {fileID: 100000, guid: 2afb1ca15641d9b48859a7f4502b134e, type: 2}
   aircraftName: FA-28A
+  startScreen: {fileID: 0}
+  lostGameLabel: {fileID: 100000, guid: baf7979f44b0df14cbb2aea6eda42944, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

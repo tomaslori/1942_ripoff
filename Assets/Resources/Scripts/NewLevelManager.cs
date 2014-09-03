@@ -18,6 +18,8 @@ public class NewLevelManager : MonoBehaviour
 	public string aircraftName = "F-22B";
 	private float backgroundSpeed = -0.02f, backgroundPosition = 0.0f;
 	public GameObject startScreen;
+
+	public GameObject lostGameLabel;
 	
 	private void initBoundaries () {
 		bounds = new Boundary ();
@@ -116,6 +118,14 @@ public class NewLevelManager : MonoBehaviour
 	}
 
 	public void restartGame() {
+		StartCoroutine(LostGameGui());
+	}
+
+	private IEnumerator LostGameGui () {
+		GameObject label = Instantiate (lostGameLabel) as GameObject;
+		yield return new WaitForSeconds(2.0f);
+		Destroy(label);
+
 		Destroy(this.gameObject);
 		this.buildingPool.recallObjects();
 		Destroy (this.buildingPool.containerObject);
