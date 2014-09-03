@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour {
 	
 	protected Rigidbody2D body;
-	protected float topSpd = 3.0f;
-	protected float detectionRange = 5.0f;
+	protected float topSpd = 5.5f;
+	protected float detectionRange = 3.5f;
 	public static ObjectManagementPool buildings;
 
 	void Start () {
