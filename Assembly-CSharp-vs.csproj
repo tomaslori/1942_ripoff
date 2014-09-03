@@ -51,6 +51,7 @@
      <Compile Include="Assets\Resources\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Resources\Scripts\GatlingGunController.cs" />
      <Compile Include="Assets\Resources\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Resources\Scripts\LevelStart.cs" />
      <Compile Include="Assets\Resources\Scripts\NewGunsData.cs" />
      <Compile Include="Assets\Resources\Scripts\NewLevelManager.cs" />
      <Compile Include="Assets\Resources\Scripts\ObjectManagementPool.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Resources\Scripts\PublicClasses.cs" />
      <Compile Include="Assets\Resources\Scripts\ScouterController.cs" />
      <Compile Include="Assets\Resources\Scripts\UFOController.cs" />
+     <Compile Include="Assets\Resources\Scripts\onClick.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

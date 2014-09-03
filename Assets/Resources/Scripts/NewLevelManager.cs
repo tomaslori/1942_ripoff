@@ -31,23 +31,19 @@ public class NewLevelManager : MonoBehaviour
 	private List<GameObject> loadBuildings () {
 		List<GameObject> buildings = new List<GameObject> ();
 		buildings.Add (Resources.Load ("Prefabs/Square-Building-1") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
-		//buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-2") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-3") as GameObject);
+		buildings.Add (Resources.Load ("Prefabs/Square-Building-4") as GameObject);
 		return buildings;
 	}
 
-	void Awake()
+	private void init()
 	{
 		initBoundaries ();
 
 		this.buildingPool = new ObjectManagementPool(loadBuildings(), 10);
 		EnemyController.buildings = this.buildingPool;
-	}
-	
-	// Use this for initialization
-	void Start ()
-	{
+
 		List<GameObject> enemies = new List<GameObject> ();
 		enemies.Add (Resources.Load ("Prefabs/Scouter") as GameObject);
 		this.enemyPool = new ObjectManagementPool(enemies, 5);
@@ -69,6 +65,11 @@ public class NewLevelManager : MonoBehaviour
 
 	}
 
+	public void startGameWith (string aircraftName) {
+		this.aircraftName = aircraftName;
+		init ();
+	}
+
 	void Update () {
 	}
 	
@@ -81,7 +82,7 @@ public class NewLevelManager : MonoBehaviour
 		cloud.transform.position = new Vector2 (cloud.transform.position.x, cloud.transform.position.y - backgroundSpeed/3);
 
 		if (cloud.transform.position.y > 20.0f)
-			cloud.transform.position = new Vector2(Random.Range(-5f, 5f), Random.Range(-20f, -12f));
+			cloud.transform.position = new Vector3(Random.Range(-5f, 5f), Random.Range(-20f, -12f), -8.0f);
 
 		// avoids float growing and becoming inaccurate
 		if (backgroundPosition < -1.0f)
